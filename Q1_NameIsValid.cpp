@@ -3,36 +3,6 @@
 using namespace std;
 
 
-bool isContainVowelMoreThanOnce(string);
-
-bool isContainSBetweenTT(string name){
-    int i = 0,j = name.length()-1;
-    while(i < j){
-        if(name[i] != 's' || name[i] != 'S'){
-            i++;
-        }
-        if(name[j] != 's' || name[j] != 'S'){
-            j--;
-        }
-        if((name[i] == 's' || name[i] == 'S') && (name[j] == 's' || name[j] == 'S'))
-            break;
-    }
-    if(i < j){
-        for(; i < j; i++){
-            if(name[i] == 't' || name[i] == 'T')
-                return true;
-        }
-    }
-    return false;
-}
-
-bool isValidName(string name){
-    if(isContainVowelMoreThanOnce(name) || isContainSBetweenTT(name)){
-        return true;
-    }
-    return false;
-}
-
 bool isContainVowelMoreThanOnce(string name){
     map<char,int> vowel_counter;
     vowel_counter.insert({'A',0});
@@ -58,10 +28,38 @@ bool isContainVowelMoreThanOnce(string name){
     return false;
 }
 
+bool isContainSBetweenTT(string name){
+    int i = 0,j = name.length()-1;
+    while(i < j){
+        if(name[i] != 's' || name[i] != 'S')
+            i++;
+
+        if(name[j] != 's' || name[j] != 'S'){
+            j--;
+        }
+        if((name[i] == 's' || name[i] == 'S') && (name[j] == 's' || name[j] == 'S'))
+            break;
+    }
+    while(i < j){
+        if(name[i] == 't' || name[i] == 'T')
+            return true;
+        i++;
+    }
+    return false;
+}
+
+bool isValidName(string name){
+    if(!isContainVowelMoreThanOnce(name) && !isContainSBetweenTT(name)){
+        return true;
+    }
+    return false;
+}
+
+
 
 int main(int argc, char const *argv[])
 {
-    cout<<isValidName("heso mat ll");
+    cout<<isValidName("heso mat ell");
     return 0;
 }
 
