@@ -1,8 +1,3 @@
-#include<iostream>
-#include<regex>
-using namespace std;
-
-
 // C++ program to validate URL
 // using Regular Expression
 #include <iostream>

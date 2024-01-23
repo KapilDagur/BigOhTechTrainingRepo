@@ -2,6 +2,7 @@
 using namespace std;
 
 /*
+    Largest Digit prime form them (excluded itself)
     @author : KAPIL DAGUR
 */
 
@@ -12,14 +13,14 @@ using namespace std;
     @return : bool
 */
 bool primeDigitNumber(int num){
-    int PrimeDigit[10]={0,0,1,1,0,1,0,1,0,0};
-    while (num != 0)
+    const int PRIMEDIGIT[10]={0,0,1,1,0,1,0,1,0,0}; //defining each prime digit
+    while (num != 0)//Loop : for check each digit of number
     {
-        if(!PrimeDigit[num % 10])
+        if(!PRIMEDIGIT[num % 10])//if any non prime digit got loop terminated..
             return false;
         num /= 10;
     }
-    return true;
+    return true; //if no any non prime digit found then return true
 }
 
 /*
@@ -30,9 +31,10 @@ bool primeDigitNumber(int num){
     @return : int
 */
 int largestDigitPrime(int number){
-    while (number > 0)
+    //As per condition we have to found smaller number from last which is prime exclude itself
+    while (number > 0)//checking each number
     {
-        if(primeDigitNumber(number))
+        if(primeDigitNumber(number))//checking each number digits...
             return number;
         number--;
     }

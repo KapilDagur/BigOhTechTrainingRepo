@@ -4,7 +4,7 @@ using namespace std;
 
 vector<int> removeDuplicate(vector<int> array){
     vector<int> result;
-    int i = 0,j,length = array.size();
+    int i = 0, j, length = array.size();
     while(i < length){
         j = 0;
         while (j < i)
