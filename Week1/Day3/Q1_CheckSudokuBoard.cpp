@@ -1,88 +1,69 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
+/*
+    @author : KAPIL DAGUR
+*/
 
-bool isAllRowsValid(vector<vector<char>>& sudoku_board){
-    int i = 0, j = 0,k;
-    //For Row wise checking of each number...
-    while (i < 9)
-    {
-        j = 0;
-        while (j < 9)
-        {
-            if(sudoku_board[i][j] == '.')
-                j++;
-            else{
-                k = j + 1;
-                while (k < 9){
-                    if(sudoku_board[i][j] == sudoku_board[i][k])
-                        return false;
-                    k++;
-                }
-            }
-            j++;     
-        }
-        i++;
-    }
-    return true;
-}
+/*
+    isValidSudoku function checks the input sudoku_board is valid or not
+    in this we use vector for store occurance and if more than one occure
+    than we can say that not a valid sudoku
 
-bool isAllColumnsValid(vector<vector<char>>& sudoku_board){
-    int i = 0, j = 0,k;
-    //For column wise checking of each number...
-    while (i < 9)
-    {
-        j = 0;
-        while (j < 9)
-        {
-            if(sudoku_board[j][i] == '.')
-                j++;
-            else{
-                k = j + 1;
-                while (k < 9){
-                    if(sudoku_board[j][i] == sudoku_board[k][i])
-                        return false;
-                    k++;
-                }
-            }
-            j++;     
-        }
-        i++;
-    }
-    return true;
-}
-
-bool isGridValid(vector<vector<char>>& sudoku_board, int row, int col, int value){
-    int subCol = col - col % 3;
-    int subRow = row - row % 3;
-    for(int i = subRow; i < subRow + 3; i++){
-        for(int j = subCol; j < subCol + 3; j++){
-            if(sudoku_board[i][j] == value && (i != row || j != col)){
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool isAllGridValid(vector<vector<char>>& sudoku_board){
-    for(int i = 0; i < sudoku_board.size(); i++){
-        for(int j = 0; j < sudoku_board.size(); j++){
-            if(!isGridValid(sudoku_board, i, j, sudoku_board[i][j]))
-                return false;
-        }
-    }
-    return true;
-}
-
-
+    @param : sudoku_board(vector<vector<char>>)
+    @return : bool
+*/
 bool isValidSudoku(vector<vector<char>>& sudoku_board){
-    return isAllRowsValid(sudoku_board) && isAllColumnsValid(sudoku_board) && isAllGridValid(sudoku_board);
+
+    //Vector for check occurance of sudoku element
+    //if occurace greater than once means not a valid as per sukodu condition
+    vector<vector<bool>> cols(9, vector<bool> (9, false));
+    vector<vector<bool>> grid(9, vector<bool> (9, false));
+
+    for(int i = 0; i < 9; ++i)
+    {
+        vector<bool> rows(9, false);
+        for(int j = 0; j < 9; ++j)
+        {
+            //Checking element of sudoku board and if non digit element continue
+            if(!isdigit(sudoku_board[i][j]))
+                continue;
+
+            //Finding the actual index of element
+            int idx = sudoku_board[i][j] - '1';
+
+            //Validation for non existing if exist means element occure twice which is not happen
+            //in sudoku game
+            if(rows[idx] == true)
+                return false;
+            //setting the element in vector for feather check
+            rows[idx] = true;
+
+            //Checking column wise element in backup vector if exist the not valid condition as per sudoku game 
+            if(cols[j][idx] == true)
+                return false;
+
+            //if arrived first time then setting it        
+            cols[j][idx] = true;
+
+            //finding grid index for validation of occurance
+            int gridIdx = ((i/3) * 3) + (j/3);
+          
+            //Validating already exist or not
+            if(grid[gridIdx][idx] == true)
+                return false;
+            
+            //if arrived first time than setting it            
+            grid[gridIdx][idx] = true;
+        }
+    }
+    return true;
 }
 
 int main(int argc, char const *argv[])
 {
-    vector<vector<char>> sudoku_board1 = 
+    vector<vector<char>> sudoku_sudoku_board1 = 
     {
         {'5','3','.','.','7','.','.','.','.'},
         {'6','.','.','1','9','5','.','.','.'},
@@ -95,10 +76,9 @@ int main(int argc, char const *argv[])
         {'.','.','.','.','8','.','.','7','9'}
     };
 
-    cout<<isAllGridValid(sudoku_board1);
+    cout<<isValidSudoku(sudoku_sudoku_board1)<<endl;
 
-
-    vector<vector<char>> sudoku_board2 = 
+    vector<vector<char>> sudoku_sudoku_board2 = 
     {
         {'8','3','.','.','7','.','.','.','.'},
         {'6','.','.','1','9','5','.','.','.'},
@@ -110,7 +90,7 @@ int main(int argc, char const *argv[])
         {'.','.','.','4','1','9','.','.','5'},
         {'.','.','.','.','8','.','.','7','9'}
     };
-    cout<<isAllColumnsValid(sudoku_board2);
+    cout<<isValidSudoku(sudoku_sudoku_board2)<<endl;
     return 0;
 }
 

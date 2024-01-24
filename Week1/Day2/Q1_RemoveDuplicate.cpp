@@ -1,28 +1,33 @@
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
 
-vector<int> removeDuplicate(vector<int> array){
-    vector<int> result;
-    int i = 0, j, length = array.size();
-    while(i < length){
-        j = 0;
-        while (j < i)
-        {
-            if(array[i] == array[j]){
-                break;
-            }
-            j++;
+int partition(vector<int>& array, int low, int high){
+    int pivot = array[high];    //Pivot element for partitioning
+    int i =  low - 1;      
+    for(int j = low; j <= high; j++){       //Loop for pivot element positition 
+        if(array[j] < pivot){
+            i++;
+            swap(array[i],array[j]);        //
         }
-        if(j == i)
-            result.push_back(array[i]);
-        i++;
     }
-    array.clear();
-    for(int ele:result)
-        array.push_back(ele);
-    result.clear();
-    return array;
+    swap(array[i+1],array[high]);
+    return i+1;
+}
+
+void quickSort(vector<int>& array, int low, int high){
+    if(low < high){
+        int mid = partition(array,low,high);
+        quickSort(array,low,mid-1);
+        quickSort(array,mid+1,high);
+    }
+}
+
+void sortArray(vector<int>& array){
+    
+}
+
+void removeDuplicate(vector<int>& array){
+    
 }
 
 int main(int argc, char const *argv[])

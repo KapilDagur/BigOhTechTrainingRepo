@@ -2,25 +2,27 @@
 using namespace std;
 
 vector<vector<int>> threePairSum(vector<int> array, int target){
-    vector<vector<int>> result;
-    if(array.size() < 3)
+    
+    vector<vector<int>> result; //vector for store all pair of triplets 
+    
+    if(array.size() < 3) //Base condition of illegal kind input
         return result;
     int i = 0, j = array.size()-1, k = 1, length = array.size()-1;
-    sort(array.begin(),array.end());
+
     while(i < length){
         j = i + 1;
         k = length - 1;
         while (j < k)
         {
             int sum = array[i] + array[j] + array[k];
-            if(sum == target){
+            if(sum == target){      //if triplets sum is equals to the terget then we append that pair in our result
                 result.push_back({array[i],array[j],array[k]});
                 j++;
                 k--;
             }
-            else if(sum < target)
+            else if(sum < target)       //slider for left side if sum of our triplets less than target
                 j++;
-            else 
+            else            //slider for rigth side if sum of our triplets greater than target
                 k--;            
         }
         i++;
