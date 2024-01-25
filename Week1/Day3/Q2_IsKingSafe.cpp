@@ -8,7 +8,7 @@ bool checkBoard(int k_i, int k_j){
 bool checkCamelAttack(char board[][8], char c , int i, int j){
 
     int k = 0;
-
+	// Check the lower right diagonal
     while (checkBoard(i + ++k, j + k)){
 	    if (board[i + k][j + k] == c)
 	        return true;
@@ -46,7 +46,7 @@ bool checkCamelAttack(char board[][8], char c , int i, int j){
 }
 
 bool checkElephantAttack(char board[][8], char c, int i, int j){
-    // Check downwards
+    // Check horizantol Downwards
     int k = 0;
     while (checkBoard(i + ++k, j)){
 	    if (board[i + k][j] == c)
@@ -55,7 +55,7 @@ bool checkElephantAttack(char board[][8], char c, int i, int j){
 	        break;
     }
 
-    // Check upwards
+    // Check horizantol Upwards
     k = 0;
     while (checkBoard(i + --k, j)){
 	    if (board[i + k][j] == c)
@@ -64,7 +64,7 @@ bool checkElephantAttack(char board[][8], char c, int i, int j){
 	        break;
     }
 
-    // Check right
+    // Check vertical right
     k = 0;
     while (checkBoard(i, j + ++k)){
 	    if (board[i][j + k] == c)
@@ -73,7 +73,7 @@ bool checkElephantAttack(char board[][8], char c, int i, int j){
 	        break;
     }
 
-    // Check left
+    // Check vertical left
     k = 0;
     while (checkBoard(i, j + --k)){
 	    if (board[i][j + k] == c)
@@ -109,73 +109,43 @@ bool checkHorseAttack(char board[][8], char c, int i, int j){
 }
 
 // Function to check if any of the two kings is unsafe or not
-int checkBoard(char board[][8]){
-    for (int i = 0; i < 8; i++){
-	    for (int j = 0; j < 8; j++){
-			if (board[i][j] == 'k'){
-				// For Horse Attack
-				if (checkHorseAttack(board, 'N', i, j))
-					return 1;
+bool checkBoard(char board[][8]){
+	int i,j;
+	for(i = 0; i < 8; i++)
+		for(j = 0; j < 8; j++)
+			if(board[i][j] == 'k')
+	// For Horse Attack
+	if (checkHorseAttack(board, 'N', i, j))
+		return 1;
 
-				// For Elephant Attack
-				if (checkElephantAttack(board, 'R', i, j))
-					return 1;
+	// For Elephant Attack
+	if (checkElephantAttack(board, 'R', i, j))
+		return 1;
 
-				// For Camel Attack
-				if (checkCamelAttack(board, 'B', i, j))
-					return 1;
+	// For Camel Attack
+	if (checkCamelAttack(board, 'B', i, j))
+		return 1;
 
-				// For Queen Attack
-				if (checkQueenAttack(board, 'Q', i, j))
-					return 1;
-			}
-
-			// Check for all pieces which can attack Black King
-			if (board[i][j] == 'K'){
-				//For Horse Attack
-				if (checkHorseAttack(board, 'n', i, j))
-					return 2;
-
-				// For Elephant Attack
-				if (checkElephantAttack(board, 'r', i, j))
-					return 2;
-
-				// For Camel Attack
-				if (checkCamelAttack(board, 'b', i, j))
-					return 2;
-
-				// For Queen Attack
-				if (checkQueenAttack(board, 'q', i, j))
-					return 2;
-			}
-		}
-	}
+	// For Queen Attack
+	if (checkQueenAttack(board, 'Q', i, j))
+		return 1;
+			
 	return 0;
-}
-
-void test(char board[][8]){
-    if (checkBoard(board) == 0)
-	    cout <<"Both Kings are safe";
-
-    else if (checkBoard(board) == 1)
-	    cout <<"White king is unsafe";
-
-    else
-	    cout <<"Black king is unsafe";
 }
 
 // Driver Code
 int main(){
-    char board[][8] = {
-                        {'.', '.', '.', 'k', '.', '.', '.', '.'},
-				        {'p', 'p', 'p', '.', 'p', 'p', 'p', 'p'},
-					    {'.', '.', '.', '.', '.', 'b', '.', '.'},
-					    {'.', '.', '.', 'R', '.', '.', '.', '.'},
-					    {'.', '.', '.', '.', '.', '.', '.', '.'}, 
-					    {'.', '.', '.', '.', '.', '.', '.', '.'}, 
-					    {'P', '.', 'P', 'P', 'P', 'P', 'P', 'P'}, 
-					    {'K', '.', '.', '.', '.', '.', '.', '.'}
-                    };
-	test(board);
+    char board[][8] = 
+	{
+        {'.', '.', '.', 'k', '.', '.', '.', '.'},
+	    {'.', '.', '.', '.', '.', '.', '.', '.'},
+	    {'.', '.', '.', 'H', '.', '.', '.', '.'},
+	    {'.', '.', '.', '.', '.', '.', '.', '.'},
+	    {'.', '.', '.', '.', '.', '.', '.', '.'}, 
+		{'.', '.', '.', '.', '.', '.', '.', '.'}, 
+		{'.', '.', '.', '.', '.', '.', '.', '.'}, 
+	    {'.', '.', '.', '.', '.', '.', '.', '.'}
+    };
+	cout<<checkBoard(board)<<endl;	
     return 0;
 }
