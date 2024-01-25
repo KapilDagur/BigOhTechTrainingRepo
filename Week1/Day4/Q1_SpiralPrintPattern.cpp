@@ -5,10 +5,12 @@ using namespace std;
 /*
     @author : KAPIL DAGUR
 */
-/*
-    @param : array(vector<vector<int>>
-*/
 
+/*
+    printSpiralClockWise func. print spiral pattern in clockwise direction
+    @param : array(vector<vector<int>>
+    @return : void
+*/
 void printSpiralClockWise(vector<vector<int>> array){
     int size = array.size();
     for(int i = 0; i < size/2; i++){
@@ -38,19 +40,30 @@ void printSpiralClockWise(vector<vector<int>> array){
     cout<<endl;
 }
 
+/*
+    printSpiralAntiClockWise func. print spiral pattern in anticlockwise direction
+    @param : array(vector<vector<int>>
+    @return : void
+*/
 void printSpiralAntiClockWise(vector<vector<int>> array){
     int size = array.size();
     for(int i = 0; i < size/2; i++){
-        //
+        //Vertical Print Iterator(from right to left)
         for(int j = size-1-i; j > i; j--){
             cout<<array[i][j]<<" ";
         }
+
+        //Horizontal Print Iterator(from up to down)
         for(int j = i; j < size-i-1; j++){
             cout<<array[j][i]<<" ";
         }
+        
+        //Vertical Print Iterator(from left to right)
         for(int j = i; j < size-i-1; j++){
             cout<<array[size-i-1][j]<<" ";
         }
+
+        //Horizontal Print Iterator(from down to up)
         for(int j = size-i-1; j > i; j--){
             cout<<array[j][size-i-1]<<" ";
         }
