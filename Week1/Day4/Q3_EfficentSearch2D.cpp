@@ -43,5 +43,14 @@ int main(int argc, char const *argv[])
     pair<int,int> output = search(arr,8);
     cout<<output.first<<", "<<output.second<<endl;
 
+    vector<vector<int>> arr1 = {
+        {1,2,3},
+        {4,5,6},
+        {7,8,9}
+    };
+
+    output = search(arr1,5);
+    cout<<output.first<<", "<<output.second<<endl;
+
     return 0;
 }

@@ -3,7 +3,10 @@ using namespace std;
 /*
     recursiveCombination find all combination as per target
 */
-void recursiveCombination(vector<string>& output, string str, string target, map<string,vector<char>> input, int idx){
+void recursiveCombination(vector<string>& output,
+                          string str, string target, 
+                          map<string,vector<char>> input, 
+                          int idx){
     if(idx == target.size()){   //base condition
         return output.push_back(str);   //Returning the output
     }
@@ -18,9 +21,6 @@ void recursiveCombination(vector<string>& output, string str, string target, map
     }
 }
 
-/*
-    Finding all combination for target string
-*/
 void possibleStrings(map<string,vector<char>> input, vector<string>& output, string target){
     recursiveCombination(output, "", target, input, 0);
 }
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     map<string,vector<char>> input = {
         {"1", { 'Z','Y','A' }},
         {"2", { 'B', 'O'}},
-        {"12", {'L'}},
+        {"23", {'L'}},
         {"3", {'U','P'}},
     };
     //output vector for store result.
