@@ -17,10 +17,12 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
             }
         }
 
+        //For those element whose left in array 1(num1) 
         while(i < n1){
             mergedArray[start++] = nums1[i++];
         }
 
+        //For those element whose left in array 2(num2)
         while(j < n2){
             mergedArray[start++] = nums2[j++];
         }
