@@ -18,11 +18,11 @@ void test(){
     iCruze icruze(6.0, 200);
 
     cout<<"Test Case"<<endl;
-    cout<<"Inveter Type : "<<pcu.getInverterType()<<" Power Rating : "<<pcu.getPowerRating()<<" Watt "<<endl;
-    cout<<"Inveter Type : "<<gti.getInverterType()<<" Power Rating : "<<gti.getPowerRating()<<" Watt "<<endl;
-    cout<<"Inveter Type : "<<regalia.getInverterType()<<" Power Rating : "<<regalia.getPowerRating()<<" Watt "<<endl;
-    cout<<"Inveter Type : "<<zelio.getInverterType()<<" Power Rating : "<<zelio.getPowerRating()<<" Watt "<<endl;
-    cout<<"Inveter Type : "<<icruze.getInverterType()<<" Power Rating : "<<icruze.getPowerRating()<<" Watt "<<endl;
+    cout<<"Inveter Type : "<<pcu.getInverterType()<<","<<" Power Rating : "<<pcu.getPowerRating()<<" Watt "<<endl;
+    cout<<"Inveter Type : "<<gti.getInverterType()<<","<<" Power Rating : "<<gti.getPowerRating()<<" Watt "<<endl;
+    cout<<"Inveter Type : "<<regalia.getInverterType()<<","<<" Power Rating : "<<regalia.getPowerRating()<<" Watt "<<endl;
+    cout<<"Inveter Type : "<<zelio.getInverterType()<<","<<" Power Rating : "<<zelio.getPowerRating()<<" Watt "<<endl;
+    cout<<"Inveter Type : "<<icruze.getInverterType()<<","<<" Power Rating : "<<icruze.getPowerRating()<<" Watt "<<endl;
                     
 }
 
