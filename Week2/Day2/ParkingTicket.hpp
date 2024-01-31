@@ -18,19 +18,19 @@ class ParkingTicket{
 private:
     int ticket_number;      //To store ticket number of parking
     SpotType spot_type;     //To store type of parking spot
-    float entry_time;       //To store time of punch in
+    int time;       //To store time of punch in
 public:
-    ParkingTicket(int ticket_number, SpotType spot_type, float entry_time);     //Constructor for ParkingTicket init
+    ParkingTicket(int ticket_number, SpotType spot_type, int time);     //Constructor for ParkingTicket init
     int getTicketNumber() const;                                                //Getter for Ticket Number
     SpotType getSpotType() const;                                               //Getter for Ticket Spot Type
-    float getEntryTime() const;                                                 //Getter for Entry Time of Vehicle
+    int getTime() const;                                                 //Getter for Entry Time of Vehicle
 };
 
 //Defination of ParkingTicket constructor
-ParkingTicket::ParkingTicket(int ticket_number, SpotType spot_type, float entry_time){
+ParkingTicket::ParkingTicket(int ticket_number, SpotType spot_type, int time){
     this->ticket_number = ticket_number;
     this->spot_type = spot_type;
-    this->entry_time = entry_time;
+    this->time = time;
 }
 
 //Defination of getTicketNumber 
@@ -43,9 +43,9 @@ SpotType ParkingTicket::getSpotType() const{
     return this->spot_type;
 }
 
-//Defination of getEntryTime
-float ParkingTicket::getEntryTime() const{
-    return this->entry_time;
+//Defination of getTime
+int ParkingTicket::getTime() const{
+    return this->time;
 }
 
 #endif

@@ -13,13 +13,13 @@ using namespace std;
 
 class EntrancePanel{
 public:
-    ParkingTicket getTicket(SpotType type, float entry_time);
+    ParkingTicket getTicket(SpotType type, int time);
 
 };
 
-ParkingTicket EntrancePanel::getTicket(SpotType type, float entry_time){
+ParkingTicket EntrancePanel::getTicket(SpotType type, int time){
     static int ticket_counter = 1;
-    return ParkingTicket(ticket_counter++, type, entry_time);
+    return ParkingTicket(ticket_counter++, type, time);
 }
 
 #endif
